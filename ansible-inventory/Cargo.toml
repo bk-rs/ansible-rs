@@ -1,0 +1,15 @@
+[package]
+name = "ansible-inventory"
+version = "0.0.0"
+authors = ["vkill <vkill.net@gmail.com>"]
+edition = "2021"
+description = "Ansible Inventory"
+license = "Apache-2.0 OR MIT"
+repository = "https://github.com/bk-rs/ansible-rs"
+homepage = "https://github.com/bk-rs/ansible-rs"
+documentation = "https://docs.rs/ansible-inventory"
+keywords = []
+categories = []
+readme = "README.md"
+
+[dependencies]

@@ -1,0 +1,6 @@
+[workspace]
+members = [
+    "ansible-inventory",
+    "ansible-inventory-cloud",
+    "ansible-inventory-cloud-cli",
+]
