@@ -2,5 +2,6 @@
 members = [
     "ansible-inventory",
     "ansible-inventory-cloud",
+    "ansible-inventory-cloud/demo_axum",
     "ansible-inventory-cloud-cli",
 ]
