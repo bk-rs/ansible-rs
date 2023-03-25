@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-# ./ansible_inventory_axum_run.sh
+# ./ansible_inventory_server_axum_run.sh
 # 
-# PORT=8081 ./ansible_inventory_axum_run.sh
+# PORT=8081 ./ansible_inventory_server_axum_run.sh
 
 set -ex
 

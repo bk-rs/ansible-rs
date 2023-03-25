@@ -1,5 +1,5 @@
 /*
-Ref ansible_inventory_axum_run.sh
+Ref ansible_inventory_server_axum_run.sh
 */
 
 use std::{env, net::SocketAddr, sync::Arc};
@@ -7,7 +7,8 @@ use std::{env, net::SocketAddr, sync::Arc};
 use ansible_inventory_cloud::{
     ansible_inventory::{
         indexmap::IndexMap,
-        script_output::{Host, List, ListMeta},
+        script_output::{Host, List, ListGroup, ListMeta},
+        GroupName, HostName, HostVars,
     },
     http::{
         authentication::{Authentication, AuthenticationType, AuthenticationVerifier},
@@ -17,6 +18,7 @@ use ansible_inventory_cloud::{
     },
 };
 use axum::{routing::get, Router};
+use log::info;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -29,6 +31,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .ok_or("args port missing")?
         .parse::<u16>()
         .map_err(|_| "args port invalid")?;
+    info!("port:{port}");
 
     //
     let ctx = Arc::new(Context {});
@@ -106,12 +109,29 @@ pub fn authentication_verify(
 //
 pub async fn list_fetch(_: (), _ctx: Arc<Context>) -> Result<List, Box<dyn std::error::Error>> {
     let mut hostvars = IndexMap::default();
-    hostvars.insert("foo".into(), Default::default());
+    hostvars.insert("host_foo".into(), {
+        let mut vars = HostVars::default();
+        vars.insert("ansible_port".into(), 22.into());
+        vars
+    });
 
-    Ok(List {
+    let mut groups = IndexMap::default();
+    groups.insert(
+        GroupName::Other("group_foo".into()),
+        ListGroup {
+            hosts: vec![HostName::from("host_foo")].into_iter().collect(),
+            ..Default::default()
+        },
+    );
+
+    let list = List {
         meta: ListMeta { hostvars },
-        groups: IndexMap::default(),
-    })
+        groups,
+    };
+
+    info!("list:{list:?}");
+
+    Ok(list)
 }
 
 //
@@ -120,6 +140,12 @@ pub async fn host_fetch(
     _: (),
     _ctx: Arc<Context>,
 ) -> Result<Host, Box<dyn std::error::Error>> {
-    println!("{hostname:?}");
-    Ok(Host::default())
+    let mut vars = HostVars::default();
+    vars.insert("ansible_port".into(), 22.into());
+
+    let host = Host(vars);
+
+    info!("hostname:{hostname:?} host:{host:?}");
+
+    Ok(host)
 }
