@@ -22,4 +22,6 @@ wrapping_macro::wrapping!(
 
 //
 #[derive(Debug, Clone)]
-pub struct Group {}
+pub struct Group {
+    // TODO,
+}
