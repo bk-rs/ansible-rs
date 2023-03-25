@@ -39,3 +39,6 @@ url = { version = "2", default_features = false, features = ["serde"] }
 tokio = { version = "1", default-features = false, features = ["macros", "rt-multi-thread"] }
 
 isahc = { version = "1", default_features = false, features = ["http2"], optional = true }
+
+[package.metadata.cargo-all-features]
+skip_optional_dependencies = true

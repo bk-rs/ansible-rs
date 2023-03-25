@@ -26,3 +26,15 @@ ansible-inventory = { version = "0.1", path = "../ansible-inventory" }
 serde = { version = "1", default-features = false, features = ["std", "derive"] }
 
 axum = { version = "0.6", default_features = false, features = ["json", "query", "headers"], optional = true }
+
+[dev-dependencies]
+tokio = { version = "1", default-features = false, features = ["macros", "rt-multi-thread"] }
+axum = { version = "0.6", default-features = false, features = ["http1", "tokio"] }
+
+isahc = { version = "1", default-features = false }
+serde_json = { version = "1" }
+
+portpicker = { version = "0.1", default-features = false }
+
+[package.metadata.cargo-all-features]
+skip_optional_dependencies = true
