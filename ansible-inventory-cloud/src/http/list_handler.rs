@@ -62,6 +62,7 @@ where
 //
 pub enum Fetcher<AO, Ctx> {
     Async(
+        #[allow(clippy::type_complexity)]
         Arc<
             dyn Fn(
                     AO,

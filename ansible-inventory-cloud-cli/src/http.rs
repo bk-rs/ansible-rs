@@ -25,7 +25,7 @@ pub async fn run(args: HttpArgs) -> Result<(), Box<dyn std::error::Error>> {
                     .unwrap_or("access_token");
                 list_url
                     .query_pairs_mut()
-                    .append_pair(&access_token_query_name, &args.access_token);
+                    .append_pair(access_token_query_name, &args.access_token);
             }
         }
 
@@ -45,7 +45,7 @@ pub async fn run(args: HttpArgs) -> Result<(), Box<dyn std::error::Error>> {
                     .unwrap_or("access_token");
                 host_url
                     .query_pairs_mut()
-                    .append_pair(&access_token_query_name, &args.access_token);
+                    .append_pair(access_token_query_name, &args.access_token);
             }
         }
 
@@ -60,7 +60,7 @@ pub async fn run(args: HttpArgs) -> Result<(), Box<dyn std::error::Error>> {
                 let hostname_query_name = args.hostname_query_name.as_deref().unwrap_or("name");
                 host_url
                     .query_pairs_mut()
-                    .append_pair(&hostname_query_name, &hostname);
+                    .append_pair(hostname_query_name, hostname);
             }
         }
 

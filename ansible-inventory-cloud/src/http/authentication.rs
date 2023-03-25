@@ -40,11 +40,13 @@ where
     AQ: AuthenticationQuery,
 {
     Sync(
+        #[allow(clippy::type_complexity)]
         Arc<
             dyn Fn(Authentication<AQ>, Ctx) -> Result<AO, Box<dyn std::error::Error>> + Send + Sync,
         >,
     ),
     Async(
+        #[allow(clippy::type_complexity)]
         Arc<
             dyn Fn(
                     Authentication<AQ>,

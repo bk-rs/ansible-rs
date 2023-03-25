@@ -75,6 +75,7 @@ where
     HQ: HostnameQuery,
 {
     Async(
+        #[allow(clippy::type_complexity)]
         Arc<
             dyn Fn(
                     Hostname<HAP, HQ>,
