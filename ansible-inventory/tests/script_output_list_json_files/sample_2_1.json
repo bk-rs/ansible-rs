@@ -1,0 +1,12 @@
+{
+    "_meta": {
+        "hostvars": {
+            "host001": {
+                "var001": "value"
+            },
+            "host002": {
+                "var002": "value"
+            }
+        }
+    }
+}

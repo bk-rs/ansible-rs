@@ -1,6 +1,6 @@
 [package]
 name = "ansible-inventory-cloud"
-version = "0.0.0"
+version = "0.1.0"
 authors = ["vkill <vkill.net@gmail.com>"]
 edition = "2021"
 description = "Ansible Inventory Cloud"
@@ -12,4 +12,17 @@ keywords = []
 categories = []
 readme = "README.md"
 
+[package.metadata.docs.rs]
+all-features = true
+
+[features]
+default = []
+
+impl_axum = ["axum"]
+
 [dependencies]
+ansible-inventory = { version = "0.1", path = "../ansible-inventory" }
+
+serde = { version = "1", default-features = false, features = ["std", "derive"] }
+
+axum = { version = "0.6", default_features = false, features = ["json", "query", "headers"], optional = true }

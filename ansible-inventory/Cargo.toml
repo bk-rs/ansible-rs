@@ -1,6 +1,6 @@
 [package]
 name = "ansible-inventory"
-version = "0.0.0"
+version = "0.1.0"
 authors = ["vkill <vkill.net@gmail.com>"]
 edition = "2021"
 description = "Ansible Inventory"
@@ -13,3 +13,9 @@ categories = []
 readme = "README.md"
 
 [dependencies]
+serde = { version = "1", default-features = false, features = ["std", "derive"] }
+serde_json = { version = "1", default-features = false, features = ["std"] }
+serde-enum-str = { version = "0.3", default-features = false }
+
+indexmap = { version = "1", default-features = false, features = ["serde-1"] }
+wrapping-macro = { version = "0.2", default-features = false, features = ["std"] }

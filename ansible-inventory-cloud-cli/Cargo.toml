@@ -1,6 +1,6 @@
 [package]
 name = "ansible-inventory-cloud-cli"
-version = "0.0.0"
+version = "0.1.0"
 authors = ["vkill <vkill.net@gmail.com>"]
 edition = "2021"
 description = "Ansible Inventory Cloud Cli"
@@ -12,4 +12,30 @@ keywords = []
 categories = []
 readme = "README.md"
 
+[[bin]]
+name = "ansible-inventory-cloud-cli"
+path = "src/bin/cloud.rs"
+
+[[bin]]
+name = "ansible-inventory-http-cli"
+path = "src/bin/http.rs"
+required-features = ["with_http"]
+
+[package.metadata.docs.rs]
+all-features = true
+
+[features]
+default = []
+
+with_http = ["isahc"]
+
 [dependencies]
+ansible-inventory = { version = "0.1", path = "../ansible-inventory" }
+
+clap = { version = "4", features = ["derive"] }
+serde_json = { version = "1", default_features = false, features = ["std"] }
+url = { version = "2", default_features = false, features = ["serde"] }
+
+tokio = { version = "1", default-features = false, features = ["macros", "rt-multi-thread"] }
+
+isahc = { version = "1", default_features = false, features = ["http2"], optional = true }
