@@ -1,11 +1,14 @@
 /*
-RUST_BACKTRACE=1 RUST_LOG=trace cargo run -p ansible-inventory-cloud-demo-axum -- 8080
+Ref ansible_inventory_axum_run.sh
 */
 
 use std::{env, net::SocketAddr, sync::Arc};
 
 use ansible_inventory_cloud::{
-    ansible_inventory::script_output::{Host, List},
+    ansible_inventory::{
+        indexmap::IndexMap,
+        script_output::{Host, List, ListMeta},
+    },
     http::{
         authentication::{Authentication, AuthenticationType, AuthenticationVerifier},
         host_handler,
@@ -102,7 +105,13 @@ pub fn authentication_verify(
 
 //
 pub async fn list_fetch(_: (), _ctx: Arc<Context>) -> Result<List, Box<dyn std::error::Error>> {
-    Ok(List::default())
+    let mut hostvars = IndexMap::default();
+    hostvars.insert("foo".into(), Default::default());
+
+    Ok(List {
+        meta: ListMeta { hostvars },
+        groups: IndexMap::default(),
+    })
 }
 
 //

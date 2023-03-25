@@ -8,3 +8,9 @@ cargo fmt -- --check
 
 cargo test-all-features -- --nocapture
 ```
+
+```
+./ansible_inventory_axum_run.sh
+
+ansible-inventory -i ./ansible_inventory_cloud.sh --list
+```
