@@ -16,7 +16,7 @@ readme = "README.md"
 all-features = true
 
 [features]
-default = []
+default = ["impl_axum"]
 
 impl_axum = ["axum"]
 
